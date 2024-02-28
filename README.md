@@ -1,4 +1,4 @@
-# Djangp project
+# Django project
 
 ## By Damir Sakhbiev
 
