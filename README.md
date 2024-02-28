@@ -22,8 +22,22 @@ source venv/bin/activate
 
 ### Instalations
 
+* development
+
 ```bash
-pip install -r requirements.txt
+pip install -r requirements/dev.txt
+```
+
+* prod
+
+```bash
+pip install -r requirements/dev.txt
+```
+
+* test
+
+```bash
+pip install -r requirements/dev.txt
 ```
 
 ### Start
