@@ -12,6 +12,12 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "FAKE")
 
 DEBUG = os.getenv("DJANGO_DEBUG", False)
 
+ALLOW_REVERSE = os.getenv("DJANGO_ALLOW_REVERSE", "true").lower() in (
+    "true",
+    "yes",
+    "1",
+    "y",
+)
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
@@ -35,6 +41,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "lyceum.middlewares.ReverseRussianWordsMiddleware",
 ]
 
 ROOT_URLCONF = "lyceum.urls"
