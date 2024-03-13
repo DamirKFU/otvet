@@ -1,6 +1,5 @@
 from django.http import HttpResponse
-from http import HTTPStatus
 
 
-def homepage(request):
-    return HttpResponse("Я чайник", status=HTTPStatus.IM_A_TEAPOT)
+def home(request):
+    return HttpResponse("<body>Главная</body>")
