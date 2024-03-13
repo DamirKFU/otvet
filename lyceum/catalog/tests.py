@@ -25,7 +25,34 @@ class HomePageEndPointTest(TestCase):
             ("3.121", HTTPStatus.NOT_FOUND),
         ]
     )
-    def test_catalog_item_detail_1_endpoint(self, param, expected_status):
-        respone = Client().get(f"/catalog/{param}/")
-        status_code = respone.status_code
-        self.assertEqual(status_code, expected_status)
+    def test_catalog_item_detail_endpoint(self, param, expected_status):
+        with self.subTest(param=f"/catalog/{param}/"):
+            respone = Client().get(f"/catalog/{param}/")
+            status_code = respone.status_code
+            self.assertEqual(status_code, expected_status)
+
+    @parameterized.parameterized.expand(
+        [
+            ("1", HTTPStatus.OK),
+            ("100", HTTPStatus.OK),
+            ("110", HTTPStatus.OK),
+            ("0", HTTPStatus.NOT_FOUND),
+            ("0111", HTTPStatus.NOT_FOUND),
+            ("abs", HTTPStatus.NOT_FOUND),
+            ("1a", HTTPStatus.NOT_FOUND),
+            ("a1", HTTPStatus.NOT_FOUND),
+            ("%1", HTTPStatus.NOT_FOUND),
+            ("1%", HTTPStatus.NOT_FOUND),
+            ("0.121", HTTPStatus.NOT_FOUND),
+            ("3.121", HTTPStatus.NOT_FOUND),
+        ]
+    )
+    def test_catalog_re_endpoint(self, param, expected_status):
+        with self.subTest(param=f"/catalog/re/{param}/"):
+            respone = Client().get(f"/catalog/re/{param}/")
+            status_code = respone.status_code
+            self.assertEqual(status_code, expected_status)
+        with self.subTest(param=f"/catalog/converter/{param}/"):
+            respone = Client().get(f"/catalog/converter/{param}/")
+            status_code = respone.status_code
+            self.assertEqual(status_code, expected_status)
