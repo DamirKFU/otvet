@@ -1,7 +1,10 @@
 from http import HTTPStatus
 
 from django.test import Client, TestCase
+from django.core.exceptions import ValidationError
 import parameterized
+
+import catalog.models
 
 
 class HomePageEndPointTest(TestCase):
@@ -56,3 +59,22 @@ class HomePageEndPointTest(TestCase):
             respone = Client().get(f"/catalog/converter/{param}/")
             status_code = respone.status_code
             self.assertEqual(status_code, expected_status)
+
+
+class CatalogDBTest(TestCase):
+    def test_add_validate_item(self):
+        item = catalog.models.Item(
+            name="test",
+            text="превосходно",
+        )
+        item.full_clean()
+        item.save()
+
+    def test_add_novalidate_item(self):
+        with self.assertRaises(ValidationError):
+            item = catalog.models.Item(
+                name="test",
+                text="test",
+            )
+            item.full_clean()
+            item.save()

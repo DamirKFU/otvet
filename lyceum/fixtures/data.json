@@ -1,0 +1,11 @@
+[
+{
+   "model": "catalog.item",
+   "pk": 1,
+   "fields": {
+      "is_published": true,
+      "name": "Одежда",
+      "text": "роскошно"
+   }
+}
+]
