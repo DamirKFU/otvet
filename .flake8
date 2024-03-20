@@ -2,3 +2,4 @@
 inline_quotes=double
 import_order_style=google
 application_import_names = catalog, about, homepage, lyceum
+exclude = venv, migrations
