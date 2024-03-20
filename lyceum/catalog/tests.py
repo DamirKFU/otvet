@@ -6,7 +6,7 @@ import parameterized
 
 import catalog.models
 
-
+1
 class HomePageEndPointTest(TestCase):
     def test_catalog_main_endpoint(self):
         respone = Client().get("/catalog/")
